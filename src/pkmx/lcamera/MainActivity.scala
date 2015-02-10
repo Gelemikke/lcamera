@@ -650,7 +650,7 @@ class MainActivity extends SActivity with Observable {
   val isos = Vector(40, 50, 80, 100, 200, 300, 400, 600, 800, 1000, 1600, 2000, 3200, 4000, 6400, 8000, 10000)
   val validIsos = Rx { lcamera().toList flatMap { camera => isos filter { camera.isoRange contains _ }} }
   val iso = Var(100)
-  val exposureTimes = Vector[Double](1.2, 2, 4, 6, 8, 15, 30, 60, 100, 125, 250, 500, 750, 1000, 1500, 2000, 3000, 4000, 5000, 6000, 8000, 10000, 20000, 30000, 75000) map { d => (1000000000l / d).toLong }
+  val exposureTimes = Vector[Double](0.1, 0.25, 0.5, 1.2, 2, 4, 6, 8, 15, 30, 60, 100, 125, 250, 500, 750, 1000, 1500, 2000, 3000, 4000, 5000, 6000, 8000, 10000, 20000, 30000, 75000) map { d => (1000000000l / d).toLong }
   val validExposureTimes = Rx { lcamera().toList flatMap { camera => exposureTimes filter { camera.exposureTimeRange contains _ }} }
   val exposureTime = Var(1000000000l / 30)
   val exposure = Rx[Exposure] { if (autoExposure()) AutoExposure else new ManualExposure(exposureTime(), iso()) }
